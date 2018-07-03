@@ -1,0 +1,33 @@
+steps:
+  - name: Start
+    question: What is your first name?
+  - name: BasicInfo
+    question: What is your current city?
+  - name: HealthIssue
+    question: Do you have health issues ?
+    answers:
+      - yes
+      - no
+  - name: Cancer
+    question: Do you have cancer?
+    answers:
+      - yes
+      - no
+  - name: CancerName
+    question: What cancer you have?
+  - name: End
+    question: Do you want to exit ?
+    answers:
+      - yes
+      - no
+conditions:
+    - from: HealthIssue
+      to: Cancer
+      condition: yes
+    - from: Cancer
+      to: CancerName
+      condition: yes
+    - from: End
+      to: Start
+      condition: no
+

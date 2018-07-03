@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sms-magic.iml" filepath="$PROJECT_DIR$/.idea/modules/sms-magic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sms-magic_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sms-magic_main.iml" group="sms-magic" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sms-magic_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sms-magic_test.iml" group="sms-magic" />
+    </modules>
+  </component>
+</project>
