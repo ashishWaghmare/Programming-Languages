@@ -6,6 +6,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import workflow.Main;
 
 import javax.security.auth.login.Configuration;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -21,6 +22,8 @@ public class UserSession {
     private int index = 0;
     private Map<String, List<Condition>> fastCache = new HashMap<>();
     private Map<String, Integer> fastStepCache = new HashMap<>();
+    private Yaml yaml;
+    private FileWriter writer;
 
     private String defination = "/steps.yml";
 
@@ -48,8 +51,9 @@ public class UserSession {
         TypeDescription desc = new TypeDescription(Step.class);
         desc.putListPropertyType("answers", String.class);
         constructor.addTypeDescription(desc);
-        Yaml yaml = new Yaml(constructor);
+        yaml = new Yaml(constructor);
         workflow = yaml.loadAs(in, Steps.class);
+        writer = new FileWriter(".storage.yaml");
         loadCaches();
         nextQuestion();
     }
@@ -88,6 +92,7 @@ public class UserSession {
 
     private void saveAnswer(String response) {
         current = new AnsweredStep(current);
+        yaml.dump(workflow,writer);
         ((AnsweredStep) current).setAnswered(response);
         workflow.getSteps().set(index - 1, current);
     }
