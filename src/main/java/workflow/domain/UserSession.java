@@ -4,8 +4,8 @@ import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import workflow.Main;
+import workflow.domain.expression.Parser;
 
-import javax.security.auth.login.Configuration;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,7 +92,7 @@ public class UserSession {
 
     private void saveAnswer(String response) {
         current = new AnsweredStep(current);
-        yaml.dump(workflow,writer);
+        yaml.dump(workflow, writer);
         ((AnsweredStep) current).setAnswered(response);
         workflow.getSteps().set(index - 1, current);
     }
@@ -128,7 +128,7 @@ public class UserSession {
         if (current instanceof AnsweredStep) {
             String answer = ((AnsweredStep) current).getAnswered();
             for (Condition condition : conditions) {
-                if (condition.getCondition().equalsIgnoreCase(answer)) {
+                if (new Parser(condition).eval(answer)) {
                     return condition.getTo();
                 }
             }

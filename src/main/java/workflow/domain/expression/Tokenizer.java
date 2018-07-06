@@ -1,5 +1,7 @@
 package workflow.domain.expression;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -7,11 +9,28 @@ import java.util.List;
  */
 public class Tokenizer {
 
-    List<String> tokens;
-    int pos;
+    private List<String> tokens=null;
+    private  int pos;
 
     public Tokenizer(String expression) {
-        tokens = expression.split(" ");
+        String[] strings = expression.split(" ");
+        tokens=Arrays.asList(strings);
         pos = 0;
+    }
+
+    public List<String> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(List<String> tokens) {
+        this.tokens = tokens;
+    }
+
+    public int size() {
+        return tokens.size();
+    }
+
+    public String next() {
+        return tokens.get(pos);
     }
 }
