@@ -18,7 +18,7 @@ import java.util.*;
 public class UserSession {
     private Step current;
     private Steps workflow;
-    private int index = 0;
+    private int index = -1;
     private Map<String, List<Condition>> fastCache = new HashMap<>();
     private Map<String, Integer> fastStepCache = new HashMap<>();
 
@@ -89,7 +89,7 @@ public class UserSession {
     private void saveAnswer(String response) {
         current = new AnsweredStep(current);
         ((AnsweredStep) current).setAnswered(response);
-        workflow.getSteps().set(index - 1, current);
+
     }
 
     private void nextQuestion() {
@@ -101,11 +101,18 @@ public class UserSession {
                 return;
             }
         }
-        if (index < workflow.getSteps().size()) {
-            current = workflow.getSteps().get(index++);
-        } else {
-            current = null;
-        }
+        gotoNext();
+    }
+
+    private void gotoNext() {
+        if (++index < workflow.getSteps().size()) {
+            current = workflow.getSteps().get(index);
+        } else exit();
+    }
+
+    public void exit() {
+        System.out.println("Exit System");
+        System.exit(0);
     }
 
     private void gotoStep(String step) {
@@ -113,10 +120,8 @@ public class UserSession {
         if (index != null) {
             current = workflow.getSteps().get(index);
             this.index = index;
-        } else {
-            System.out.println("Exit System");
-            System.exit(0);
-        }
+        } else exit();
+
     }
 
     private String eval(Step current, List<Condition> conditions) {
