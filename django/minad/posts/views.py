@@ -13,7 +13,8 @@ def index(request):
     return render(request, 'posts/index.html',context)
 
 def details(request,id):
-    post = Posts.object.get(id=id)
+    post = Posts.objects.get(id=id)
     context = {
         'post':post
     }
+    return render(request,'posts/details.html',context)
