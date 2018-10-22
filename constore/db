@@ -1,0 +1,4 @@
+create user 'converse'@'localhost' IDENTIFIED BY 'converse'
+mysql> create database converse
+>GRANT ALL PRIVILEGES ON converse.* to 'converse'@'localhost';
+>FLUSH PRIVILEGES;
