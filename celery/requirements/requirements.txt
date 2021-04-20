@@ -12,7 +12,7 @@ kombu==4.1.0
 marshmallow==2.13.6
 MySQL-python==1.2.5
 pluggy==0.7.1
-py==1.6.0
+py==1.10.0
 pynamodb==3.2.1
 python-dateutil==2.7.3
 pytz==2018.5
