@@ -27,6 +27,6 @@ sm-utils==0.6.1
 sm-worker==1.0.2
 SQLAlchemy==1.1.14
 tox==3.2.1
-urllib3==1.23
+urllib3==1.26.5
 vine==1.1.4
 virtualenv==16.0.0
